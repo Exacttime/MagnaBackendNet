@@ -25,5 +25,17 @@ namespace MagnaBackendNet.Controllers
             }
             return Ok(mangas);
         }
+        [HttpGet("{id}")]
+        [ProducesResponseType(200, Type = typeof(IEnumerable<Manga>))]
+        public ActionResult<Manga> GetMangaById(Guid id)
+        {
+            var manga = _mangaRepository.GetMangaById(id);
+            if (manga == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(manga);
+        }
     }
 }
