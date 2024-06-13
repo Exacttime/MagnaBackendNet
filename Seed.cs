@@ -38,6 +38,22 @@ namespace MagnaBackendNet
                         }
                     },
                     new UsuarioManga()
+                    {
+                        Manga = new Manga()
+                        {
+                            Title = "poa",
+                            Chapter = 1,
+                            Description = "teste2lo",
+                            ImageUrl = "Random",
+                        },
+                        Usuario = new Usuario()
+                        {
+                            username = "erc",
+                            password = "teste",
+                            email = "teste@hotmail.com",
+                        }
+                    },
+                    new UsuarioManga()
                          {
                         Manga = new Manga()
                         {

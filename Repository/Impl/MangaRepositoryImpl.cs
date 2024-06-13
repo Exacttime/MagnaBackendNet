@@ -19,9 +19,32 @@ namespace MagnaBackendNet.Repository.Impl
             }
             else
             {
-                throw new InvalidOperationException("Manga not found with the specified ID.");
+                throw new InvalidOperationException("Manga com esse ID não encontrado.");
             }
         }
-
+        public Manga GetManga(string title)
+        {
+            Manga manga = _context.Mangas.First(m => m.Title == title);
+            if (manga != null)
+            {
+                return manga;
+            }
+            else
+            {
+                throw new InvalidOperationException("Manga com esse titulo não encontrado.");
+            }
+        }
+        public ICollection<Manga> GetMangasByTitleContaning(string title)
+        {
+            return _context.Mangas.Where(m => m.Title.Contains(title)).ToList();
+        }
+        public bool MangaExists(Guid mangaId)
+        {
+            return _context.Mangas.Any(m => m.Id == mangaId);
+        }
+        public bool MangaExists(string mangaTitle)
+        {
+            return _context.Mangas.Any(m => m.Title == mangaTitle || m.Title.Contains(mangaTitle));
+        }
     }
 }
