@@ -73,5 +73,36 @@ namespace MagnaBackendNet.Controllers
 
             return Ok(mangas);
         }
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateManga([FromQuery] Guid userId, [FromQuery] int catId, [FromBody] MangaDTO mangaCreate)
+        {
+            if (mangaCreate == null)
+                return BadRequest(ModelState);
+
+            var mangas = _mangaRepository.GetManga(mangaCreate.Title);
+
+            if (mangas != null)
+            {
+                ModelState.AddModelError("", "Usuario already exists");
+                return StatusCode(422, ModelState);
+            }
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            var mangasMap = _mapper.Map<Manga>(mangaCreate);
+
+
+            if (!_mangaRepository.CreateManga(userId,mangasMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while savin");
+                return StatusCode(500, ModelState);
+            }
+
+            return Ok("Successfully created");
+        }
+
     }
 }

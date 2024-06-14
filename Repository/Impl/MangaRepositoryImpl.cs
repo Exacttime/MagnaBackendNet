@@ -46,5 +46,24 @@ namespace MagnaBackendNet.Repository.Impl
         {
             return _context.Mangas.Any(m => m.Title == mangaTitle || m.Title.Contains(mangaTitle));
         }
+
+        public bool CreateManga(Guid UsuarioId, Manga manga)
+        {
+            var usuarioAssociated = _context.Users.Where(m => m.id == UsuarioId).FirstOrDefault();
+            var usuarioManga = new UsuarioManga()
+            {
+                Usuario = usuarioAssociated,
+                Manga = manga,
+            };
+            _context.Add(usuarioManga);
+            _context.Add(manga);
+            return Save();
+        }
+
+        public bool Save()
+        {
+            var saved = _context.SaveChanges();
+            return saved > 0  ? true : false;
+        }
     }
 }

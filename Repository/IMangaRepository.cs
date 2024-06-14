@@ -10,5 +10,7 @@ namespace MagnaBackendNet.Repository
         ICollection<Manga> GetMangasByTitleContaning(string title);
         bool MangaExists(Guid mangaId);
         bool MangaExists(string title);
+        bool CreateManga(Guid UsuarioId,Manga manga);
+        bool Save();
     }
 }
