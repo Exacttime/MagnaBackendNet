@@ -10,6 +10,8 @@ namespace MagnaBackendNet.Helper
         public MappingProfiles()
         {
             CreateMap<Manga, MangaDTO>();
+            CreateMap<MangaDTO, Manga>();
+
         }
     }
 }

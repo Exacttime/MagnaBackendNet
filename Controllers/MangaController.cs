@@ -76,18 +76,10 @@ namespace MagnaBackendNet.Controllers
         [HttpPost]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
-        public IActionResult CreateManga([FromQuery] Guid userId, [FromQuery] int catId, [FromBody] MangaDTO mangaCreate)
+        public IActionResult CreateManga([FromQuery] Guid userId, [FromBody] MangaDTO mangaCreate)
         {
             if (mangaCreate == null)
                 return BadRequest(ModelState);
-
-            var mangas = _mangaRepository.GetManga(mangaCreate.Title);
-
-            if (mangas != null)
-            {
-                ModelState.AddModelError("", "Usuario already exists");
-                return StatusCode(422, ModelState);
-            }
 
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
