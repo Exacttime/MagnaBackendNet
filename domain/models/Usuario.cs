@@ -5,10 +5,10 @@ namespace MagnaBackendNet.domain.models;
 
 public class Usuario
 {
-    public Guid id { get; set; }
-    public string username { get; set; }
-    public string email { get; set; }
-    public string password { get; set; }
+    public Guid Id { get; set; }
+    public string Username { get; set; }
+    public string Email { get; set; }
+    public string Password { get; set; }
     public ICollection<UsuarioManga> UsuarioManga { get; set; }
 }
 

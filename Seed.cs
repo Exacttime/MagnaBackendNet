@@ -32,9 +32,9 @@ namespace MagnaBackendNet
                         },
                         Usuario = new Usuario()
                         {
-                            username = "erc",
-                            password = "teste",
-                            email = "teste@hotmail.com",
+                            Username = "erc",
+                            Password = "teste",
+                            Email = "teste@hotmail.com",
                         }
                     },
                     new UsuarioManga()
@@ -48,9 +48,9 @@ namespace MagnaBackendNet
                         },
                         Usuario = new Usuario()
                         {
-                            username = "erc",
-                            password = "teste",
-                            email = "teste@hotmail.com",
+                            Username = "erc",
+                            Password = "teste",
+                            Email = "teste@hotmail.com",
                         }
                     },
                     new UsuarioManga()
@@ -64,9 +64,9 @@ namespace MagnaBackendNet
                         },
                         Usuario = new Usuario()
                         {
-                            username = "loco",
-                            password = "loco",
-                            email = "teste@hotmail.com",
+                            Username = "loco",
+                            Password = "loco",
+                            Email = "teste@hotmail.com",
                         }
                     }
                 };

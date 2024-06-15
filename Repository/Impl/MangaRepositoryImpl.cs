@@ -49,7 +49,7 @@ namespace MagnaBackendNet.Repository.Impl
 
         public bool CreateManga(Guid UsuarioId, Manga manga)
         {
-            var usuarioAssociated = _context.Users.Where(m => m.id == UsuarioId).FirstOrDefault();
+            var usuarioAssociated = _context.Users.Where(u => u.Id == UsuarioId).FirstOrDefault();
             var usuarioManga = new UsuarioManga()
             {
                 Usuario = usuarioAssociated,

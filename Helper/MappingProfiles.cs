@@ -11,7 +11,8 @@ namespace MagnaBackendNet.Helper
         {
             CreateMap<Manga, MangaDTO>();
             CreateMap<MangaDTO, Manga>();
-
+            CreateMap<Usuario, UsuarioDTO>();
+            CreateMap<UsuarioDTO, Usuario>();
         }
     }
 }
