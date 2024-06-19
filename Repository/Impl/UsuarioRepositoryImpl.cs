@@ -9,27 +9,23 @@ namespace MagnaBackendNet.Repository.Impl
         {
             _dataContext = dataContext;
         }
-
         public bool CreateUser(Usuario usuario)
         {
-            if (GetByUsername(usuario.Username) == null)
+            if (GetByUsername(usuario.Username) != null)
             {
                 throw new InvalidOperationException("Usuario com esse username já existe.");
             }
             _dataContext.Add(usuario);
             return Save();
         }
-
-        public Usuario GetById(int id)
+        public Usuario GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return _dataContext.Users.Where(u => u.Id == id).First();
         }
-
         public Usuario GetByUsername(string username)
         {
-            throw new NotImplementedException();
+            return _dataContext.Users.Where(u => u.Username.Equals(username)).FirstOrDefault();
         }
-
         public ICollection<Usuario> GetUsers()
         {
             return _dataContext.Users.OrderBy(u => u.Username).ToList();

@@ -28,5 +28,23 @@ namespace MagnaBackendNet.Controllers
             }
             return Ok(users);
         }
+        [HttpPost]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        public IActionResult CreateUser([FromBody] UsuarioDTO createUser)
+        {
+            if (createUser == null)
+                return BadRequest();
+
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var userMap = _mapper.Map<Usuario>(createUser);
+            if (!_usuarioRepository.CreateUser(userMap))
+            {
+                ModelState.AddModelError("", "Something went wrong while savin");
+                return StatusCode(500, ModelState);
+            }
+            return Ok();
+        }
     }
 }
