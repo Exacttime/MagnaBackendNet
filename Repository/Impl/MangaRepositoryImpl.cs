@@ -59,7 +59,11 @@ namespace MagnaBackendNet.Repository.Impl
             _context.Add(manga);
             return Save();
         }
-
+        public bool UpdateManga(Manga updateManga)
+        {
+            _context.Update(updateManga);
+            return Save();
+        }
         public bool Save()
         {
             var saved = _context.SaveChanges();

@@ -11,6 +11,7 @@ namespace MagnaBackendNet.Repository
         bool MangaExists(Guid mangaId);
         bool MangaExists(string title);
         bool CreateManga(Guid UsuarioId,Manga manga);
+        bool UpdateManga(Manga manga);
         bool Save();
     }
 }

@@ -95,6 +95,25 @@ namespace MagnaBackendNet.Controllers
 
             return Ok("Successfully created");
         }
-
+        [HttpPut]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public IActionResult UpdateManga(string mangaTitle, [FromBody]MangaDTO updatedManga)
+        {
+            if(updatedManga == null)
+                return BadRequest(ModelState);
+            if (!_mangaRepository.MangaExists(mangaTitle))
+                return NotFound();
+            if (!ModelState.IsValid)
+                return BadRequest();
+            var mangaMap = _mapper.Map<Manga>(updatedManga);
+            if (!_mangaRepository.UpdateManga(mangaMap))
+            {
+                ModelState.AddModelError("", "Algo deu errado na atualização do manga");
+                return StatusCode(500, ModelState);
+            }
+            return NoContent();
+        }
     }
 }
